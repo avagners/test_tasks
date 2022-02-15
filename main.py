@@ -86,7 +86,7 @@ def date_3(file):
         if datetime.weekday(date) == 1:
             month_date = datetime.timetuple(date)[1]
             month_date_plus_7_days = datetime.timetuple(date + timedelta(7))[1]
-            if month_date == month_date_plus_7_days:
+            if month_date != month_date_plus_7_days:
                 count += 1
 
     print(count)
