@@ -8,7 +8,7 @@ def num_1(df):
     for i in df:
         if i % 2 == 0:
             count += 1
-    print(count)
+    print('Итог 1-й задачи:', count)
 
 
 def num_2(df):
@@ -22,7 +22,7 @@ def num_2(df):
         if score_divisor == 1:
             count += 1
 
-    print(count)
+    print('Итог 2-й задачи:', count)
 
 
 def num_3(df):
@@ -33,17 +33,23 @@ def num_3(df):
         if num < 0.5:
             count += 1
 
-    print(count)
+    print('Итог 3-й задачи:', count)
 
 
 def date_1(df):
     """Столько вторников в этом столбце?"""
     count = 0
-    for i in df:
-        if i[:3] == 'Tue':
-            count += 1
+    for datetime_str in df:
+        date = datetime_str.strip()
+        try:
+            datetime_object = datetime.strptime(date, '%a %b %d %H:%M:%S %Y')
+        except BaseException as error:
+            print(error)
+        else:
+            if datetime.timetuple(datetime_object)[6] == 1:
+                count += 1
 
-    print(count)
+    print('Итог 4-й задачи:', count)
 
 
 def date_2(df):
@@ -56,7 +62,7 @@ def date_2(df):
         if weekday == 1:
             count += 1
 
-    print(count)
+    print('Итог 5-й задачи:', count)
 
 
 def date_3(df):
@@ -70,7 +76,7 @@ def date_3(df):
             if month_date != month_date_plus_7_days:
                 count += 1
 
-    print(count)
+    print('Итог 6-й задачи:', count)
 
 
 df = pd.read_excel('task_support.xlsx', sheet_name="Tasks")

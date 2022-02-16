@@ -10,7 +10,7 @@ def num_1(file):
             if int(i.strip()) % 2 == 0:
                 count += 1
 
-    print(count)
+    print('Итог 1-й задачи:', count)
 
 
 def num_2(file):
@@ -28,7 +28,7 @@ def num_2(file):
         if score_divisor == 1:
             count += 1
 
-    print(count)
+    print('Итог 2-й задачи:', count)
 
 
 def num_3(file):
@@ -43,7 +43,7 @@ def num_3(file):
         if i < 0.5:
             count += 1
 
-    print(count)
+    print('Итог 3-й задачи:', count)
 
 
 def date_1(file):
@@ -52,11 +52,17 @@ def date_1(file):
         data = file.readlines()
 
     count = 0
-    for i in data:
-        if i[:3] == 'Tue':
-            count += 1
+    for datetime_str in data:
+        date = datetime_str.strip()
+        try:
+            datetime_object = datetime.strptime(date, '%a %b %d %H:%M:%S %Y')
+        except BaseException as error:
+            print(error)
+        else:
+            if datetime.timetuple(datetime_object)[6] == 1:
+                count += 1
 
-    print(count)
+    print('Итог 4-й задачи:', count)
 
 
 def date_2(file):
@@ -72,7 +78,7 @@ def date_2(file):
         if weekday == 1:
             count += 1
 
-    print(count)
+    print('Итог 5-й задачи:', count)
 
 
 def date_3(file):
@@ -89,7 +95,7 @@ def date_3(file):
             if month_date != month_date_plus_7_days:
                 count += 1
 
-    print(count)
+    print('Итог 6-й задачи:', count)
 
 
 num_1('num_1.txt')
